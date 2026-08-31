@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: clausetrail-backend
+  data:
+    mongodb:
+      uri: mongodb+srv://pawanshigwan990_do_user:ooVQQWRseYVUOYkl@cluster0.bjmthnv.mongodb.net/clausetrail?retryWrites=true&w=majority&appName=Cluster0
+      auto-index-creation: true
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+app:
+  jwt:
+    secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+    expiration-ms: 86400000 # 24 hours
+  cors:
+    allowed-origins: "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,https://clausetrail.vercel.app"
+
+logging:
+  level:
+    root: INFO
+    com.clausetrail: DEBUG
+    org.springframework.data.mongodb: INFO
+    org.springframework.security: INFO

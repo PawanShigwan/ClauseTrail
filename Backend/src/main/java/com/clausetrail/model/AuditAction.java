@@ -1,0 +1,17 @@
+package com.clausetrail.model;
+
+public enum AuditAction {
+    LOGIN,
+    USER_REGISTER,
+    ROLE_CHANGE,
+    UPLOAD_CONTRACT,
+    VIEW_CONTRACT,
+    UPDATE_METADATA,
+    MODIFY_CLAUSE,
+    SUBMIT_FOR_REVIEW,
+    APPROVE_MODIFICATION,
+    REJECT_MODIFICATION,
+    ARCHIVE_CONTRACT,
+    EXPORT_PDF,
+    EXPORT_AUDIT_LOG
+}
