@@ -23,10 +23,10 @@ WORKDIR /app
 # Copy the fat JAR from the builder stage
 COPY --from=builder /app/target/*.jar app.jar
 
-# Render dynamically assigns a port via $PORT; default to 8080 for local Docker runs
-ENV PORT=8080
+# Render dynamically assigns a port via $PORT; default to 10000
+ENV PORT=10000
 
-EXPOSE $PORT
+EXPOSE 10000
 
 # JVM tuning for containerised environments (Render free tier ≈ 512 MB RAM):
 #   UseContainerSupport  – respect cgroup memory limits instead of host RAM

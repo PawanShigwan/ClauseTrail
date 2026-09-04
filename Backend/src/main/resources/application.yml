@@ -1,6 +1,5 @@
 server:
-  # Render dynamically assigns a port via the $PORT env var.
-  # Locally defaults to 8080. The Dockerfile also passes -Dserver.port=${PORT}.
+  # In Docker/Render, $PORT is set to 10000. For local dev outside Docker, defaults to 8080.
   port: ${PORT:8080}
   servlet:
     context-path: /

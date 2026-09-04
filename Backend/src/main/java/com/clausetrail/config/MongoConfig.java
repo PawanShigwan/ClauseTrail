@@ -26,18 +26,35 @@ public class MongoConfig {
     @Value("${spring.data.mongodb.uri}")
     private String mongoUri;
 
+    @Value("${spring.profiles.active:dev}")
+    private String activeProfile;
+
     @Bean
     @Primary
     public MongoClient mongoClient() {
+        boolean isProd = "prod".equalsIgnoreCase(activeProfile);
+        String maskedUri = mongoUri != null ? mongoUri.replaceAll("://([^:]+):([^@]+)@", "://$1:****@") : "not set";
+
         try {
-            log.info("Attempting connection to configured MongoDB Atlas cluster...");
+            log.info("Connecting to MongoDB (profile: {}) at: {}", activeProfile, maskedUri);
             MongoClient atlasClient = MongoClients.create(mongoUri);
-            // Verify connection with a quick ping
+            // Quick ping test
             atlasClient.getDatabase("admin").runCommand(new Document("ping", 1));
-            log.info("Successfully connected to MongoDB Atlas!");
+            log.info("Successfully connected to MongoDB cluster!");
             return atlasClient;
         } catch (Exception e) {
-            log.warn("MongoDB Atlas connection failed: {}. Activating resilient high-speed in-memory MongoDB engine...", e.getMessage());
+            if (isProd) {
+                log.error("==========================================================================");
+                log.error("FATAL: Failed to connect to MongoDB Atlas in production: {}", e.getMessage());
+                log.error("Troubleshooting steps:");
+                log.error("1. Go to MongoDB Atlas -> Network Access -> IP Access List.");
+                log.error("2. Add '0.0.0.0/0' (Allow Access from Anywhere). Render uses dynamic cloud IPs.");
+                log.error("3. Verify the MONGODB_URI environment variable in Render Dashboard -> Environment.");
+                log.error("==========================================================================");
+                throw new IllegalStateException("Production MongoDB connection failed: " + e.getMessage(), e);
+            }
+
+            log.warn("MongoDB connection failed ({}) in '{}' mode. Activating in-memory MongoDB engine for local dev...", e.getMessage(), activeProfile);
             try {
                 MongoServer server = new MongoServer(new MemoryBackend());
                 InetSocketAddress serverAddress = server.bind();
