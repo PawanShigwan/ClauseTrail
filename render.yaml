@@ -1,0 +1,34 @@
+# render.yaml – Render Infrastructure-as-Code Blueprint
+# Deploy this file by connecting your Git repo to Render and selecting "Blueprint"
+
+services:
+  - type: web
+    name: clausetrail-backend
+    runtime: docker
+    # Root directory within your repository (monorepo setup)
+    rootDir: Backend
+    dockerfilePath: Dockerfile
+    # Render's free tier automatically assigns $PORT
+    # healthCheckPath is used by Render to determine when the service is live
+    healthCheckPath: /api/health
+    # Auto-deploy on every push to this branch
+    branch: main
+    # Set autoDeploy: false if you prefer manual deployments
+    autoDeploy: true
+    envVars:
+      # Render injects PORT automatically; this documents the expectation
+      - key: PORT
+        value: "10000"
+      # Set these in the Render dashboard → Environment tab
+      # (use the "secret" type so they are never logged)
+      - key: MONGODB_URI
+        sync: false           # Must be set manually in the Render dashboard
+      - key: JWT_SECRET
+        sync: false           # Must be set manually in the Render dashboard
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false           # e.g. https://clausetrail.vercel.app,https://*.vercel.app
+      - key: SPRING_PROFILES_ACTIVE
+        value: "prod"
+    # Render free tier: 512 MB RAM, 0.1 CPU
+    # Upgrade to "Starter" ($7/mo) for always-on (no cold starts)
+    plan: free

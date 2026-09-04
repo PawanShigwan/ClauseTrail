@@ -1,0 +1,43 @@
+# Maven build output
+target/
+*.class
+*.jar
+*.war
+
+# IDE / editor metadata
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.eclipse/
+.classpath
+.project
+.settings/
+*.factorypath
+
+# Eclipse build output
+bin/
+
+# Maven wrapper (not needed in Docker; Maven is in the base image)
+.mvn/
+mvnw
+mvnw.cmd
+
+# Git
+.git
+.gitignore
+
+# OS artefacts
+.DS_Store
+Thumbs.db
+
+# Logs & temp files
+*.log
+logs/
+
+# Secrets / local overrides (never bake these into the image)
+.env
+.env.*
+application-local.yml
+application-secrets.yml

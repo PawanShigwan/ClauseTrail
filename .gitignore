@@ -1,0 +1,52 @@
+# Maven / Java build output
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Eclipse / Maven IDE compiler output
+Backend/bin/
+bin/
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.eclipse/
+*.classpath
+*.project
+*.settings/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node / Frontend
+node_modules/
+dist/
+build/
+.next/
+.nuxt/
+.cache/
+*.local
+
+# Environment / Secrets
+.env
+.env.*
+.env*.local
+!.env.example
+application-secrets.yml
+application-local.yml
+
+# Spring Boot
+spring-boot-devtools.properties

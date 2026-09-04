@@ -1,0 +1,40 @@
+server:
+  # Render dynamically assigns a port via the $PORT env var.
+  # Locally defaults to 8080. The Dockerfile also passes -Dserver.port=${PORT}.
+  port: ${PORT:8080}
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: clausetrail-backend
+  data:
+    mongodb:
+      # Set MONGODB_URI in the Render dashboard (Environment tab → Add Secret).
+      # Local default uses the Atlas cluster; MongoConfig.java will fall back to
+      # an in-memory server if the Atlas connection fails.
+      uri: ${MONGODB_URI:mongodb+srv://pawanshigwan990_db_user:bS0ny2XSC6aqW3ey@cluster0.bjmthnv.mongodb.net/clausetrail?retryWrites=true&w=majority&appName=Cluster0}
+      auto-index-creation: true
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+app:
+  jwt:
+    # Set JWT_SECRET in the Render dashboard. Use a long, random hex string in production.
+    # Generate one with: openssl rand -hex 32
+    secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000} # default: 24 hours
+  cors:
+    # Comma-separated list of allowed origins.
+    # Set CORS_ALLOWED_ORIGINS in Render to your Vercel production URL.
+    # Wildcards (https://*.vercel.app) are supported via setAllowedOriginPatterns in SecurityConfig.
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:5174,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:5174,https://clausetrail.vercel.app,https://*.vercel.app}
+
+logging:
+  level:
+    root: INFO
+    com.clausetrail: ${LOG_LEVEL_APP:DEBUG}
+    org.springframework.data.mongodb: INFO
+    org.springframework.security: INFO

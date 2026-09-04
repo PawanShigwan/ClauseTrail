@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-base: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --border-subtle: #e2e8f0;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+  }
+
+  .dark {
+    --bg-base: #090d16;
+    --bg-surface: #0f172a;
+    --bg-card: #1e293b;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+}
+
+/* Custom Scrollbar - Sleek & Modern */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Corporate Trust Card Utilities */
+.card-corporate {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 4px 20px -2px rgba(79, 70, 229, 0.07);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-corporate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -4px rgba(79, 70, 229, 0.14), 0 8px 10px -6px rgba(79, 70, 229, 0.06);
+  border-color: #cbd5e1;
+}
+
+.dark .card-corporate {
+  background-color: rgba(30, 41, 59, 0.7);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark .card-corporate:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+/* Gradient Utilities */
+.gradient-primary {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-alt {
+  background: linear-gradient(135deg, #0f172a 30%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .gradient-text-alt {
+  background: linear-gradient(135deg, #f8fafc 40%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Button Utilities */
+.btn-corporate-primary {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-corporate-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px 0 rgba(79, 70, 229, 0.45);
+  filter: brightness(1.04);
+}
+
+.btn-corporate-primary:active {
+  transform: translateY(0);
+}
+
+.btn-corporate-secondary {
+  background-color: #ffffff;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-corporate-secondary:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.dark .btn-corporate-secondary {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .btn-corporate-secondary:hover {
+  background-color: #334155;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Form Inputs */
+.input-corporate {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  color: #0f172a;
+  transition: all 0.15s ease;
+}
+
+.input-corporate:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.dark .input-corporate {
+  background-color: #0f172a;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+.dark .input-corporate:focus {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+}
+
+/* Diff Styling - Corporate Trust (High Contrast & Clean) */
+.diff-deleted {
+  background-color: #ffe4e6;
+  color: #be123c;
+  text-decoration: line-through;
+  padding: 2px 5px;
+  border-radius: 4px;
+  border-left: 2px solid #e11d48;
+  font-weight: 500;
+}
+
+.dark .diff-deleted {
+  background-color: rgba(244, 63, 94, 0.2);
+  color: #fda4af;
+  border-left-color: #f43f5e;
+}
+
+.diff-added {
+  background-color: #dcfce7;
+  color: #15803d;
+  padding: 2px 5px;
+  border-radius: 4px;
+  border-left: 2px solid #16a34a;
+  font-weight: 500;
+}
+
+.dark .diff-added {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  border-left-color: #10b981;
+}
+
+.diff-unchanged {
+  color: #475569;
+}
+
+.dark .diff-unchanged {
+  color: #cbd5e1;
+}
+
+/* Glassmorphism & Atmospheric Blobs */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(79, 70, 229, 0.06);
+}
+
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.blob-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(64px);
+  pointer-events: none;
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.dark .blob-orb {
+  opacity: 0.2;
+}
+
+/* Isometric 3D Helpers */
+.perspective-container {
+  perspective: 2000px;
+}
+
+.isometric-card {
+  transform: rotateX(6deg) rotateY(-10deg) rotateZ(1deg);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.isometric-card:hover {
+  transform: rotateX(2deg) rotateY(-4deg) rotateZ(0deg) translateY(-6px);
+  box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.25);
+}
